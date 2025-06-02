@@ -1,13 +1,30 @@
 from flask import Flask, request, jsonify
 from flask_bcrypt import Bcrypt
 from models import db, User, Especialidad, Horario, HorarioDetail, Cita
+from flasgger import Swagger
 from datetime import datetime, timedelta
 
-app = Flask(__name__)
+app = Flask(_name_)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db.init_app(app)  
 bcrypt = Bcrypt(app)
+
+template = {
+    "swagger": "2.0",
+    "info": {
+        "title": "CitaTuSalud",
+        "description": "API para gestionar usuarios, especialidades, horarios y citas médicas.",
+        "version": "1.0.0",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    }
+}
+
+swagger = Swagger(app, template=template)
 
 def generar_horarios(inicio, fin):
     horarios = []
@@ -26,6 +43,60 @@ def generar_horarios(inicio, fin):
 
 @app.route('/register', methods=['POST'])
 def register():
+    """
+    Register a new user
+    ---
+    tags:
+      - Users
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            nombre:
+              type: string
+              example: Juan Pérez
+              description: Nombre completo del usuario.
+            correo:
+              type: string
+              example: juan@example.com
+              description: Correo electrónico del usuario, debe ser único.
+            password:
+              type: string
+              example: password123
+              description: Contraseña del usuario.
+            rol:
+              type: integer
+              example: 1
+              description: Rol del usuario (1 para paciente, 2 para doctor, etc.).
+    responses:
+      201:
+        description: Usuario registrado con éxito.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Usuario registrado con éxito.
+      400:
+        description: Solicitud incorrecta, falta de campos requeridos o correo ya registrado.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Todos los campos son requeridos.
+      409:
+        description: Conflicto, el correo ya está registrado.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: El correo ya está registrado.
+    """
     data = request.get_json()
     nombre = data.get('nombre')
     correo = data.get('correo')
@@ -37,7 +108,7 @@ def register():
 
     existing_user = User.query.filter_by(correo=correo).first()
     if existing_user:
-        return jsonify({"message": "El correo ya está registrado."}), 400
+        return jsonify({"message": "El correo ya está registrado."}), 409
 
     hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
     new_user = User(nombre=nombre, correo=correo, password=hashed_password, rol=rol)
@@ -47,8 +118,35 @@ def register():
     return jsonify({"message": "Usuario registrado con éxito."}), 201
 
 
+
 @app.route('/login', methods=['POST'])
 def login():
+    """
+    Login a user
+    ---
+    tags:
+      - Users
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            correo:
+              type: string
+              example: juan@example.com
+            password:
+              type: string
+              example: password123
+    responses:
+      200:
+        description: Login successful
+      404:
+        description: User not found
+      401:
+        description: Invalid password
+    """
     data = request.get_json()
     correo = data.get('correo')
     password = data.get('password')
@@ -68,6 +166,7 @@ def login():
             "rol": user.rol,
         },
     }), 200
+
 
 
 @app.route('/register-especialidad', methods=['POST'])
@@ -265,8 +364,7 @@ def eliminar_cita(citaId):
     return jsonify({"message": "Cita cancelada correctamente"}), 200
 
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
-
