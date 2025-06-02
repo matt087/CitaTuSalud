@@ -38,7 +38,6 @@ def generar_horarios(inicio, fin):
 
     return horarios
 
-
 # Routes
 
 @app.route('/register', methods=['POST'])
@@ -118,7 +117,6 @@ def register():
     return jsonify({"message": "Usuario registrado con éxito."}), 201
 
 
-
 @app.route('/login', methods=['POST'])
 def login():
     """
@@ -142,10 +140,40 @@ def login():
     responses:
       200:
         description: Login successful
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Inicio de sesión exitoso.
+            usuario:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 1
+                nombre:
+                  type: string
+                  example: Juan Pérez
+                rol:
+                  type: integer
+                  example: 1
       404:
         description: User not found
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Usuario no encontrado.
       401:
         description: Invalid password
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Contraseña incorrecta.
     """
     data = request.get_json()
     correo = data.get('correo')
@@ -168,9 +196,65 @@ def login():
     }), 200
 
 
-
 @app.route('/register-especialidad', methods=['POST'])
 def register_especialidad():
+    """
+    Register a new specialty
+    ---
+    tags:
+      - Especialidades
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            nombre:
+              type: string
+              example: Cardiología
+              description: Nombre de la especialidad.
+            doctor:
+              type: string
+              example: Dr. Gómez
+              description: Nombre del doctor asociado a la especialidad.
+            fechaIngreso:
+              type: string
+              example: 2024-06-01
+              description: Fecha de ingreso de la especialidad en formato YYYY-MM-DD.
+    responses:
+      201:
+        description: Especialidad registrada con éxito.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Especialidad registrada con éxito.
+            data:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 1
+                nombre:
+                  type: string
+                  example: Cardiología
+                doctor:
+                  type: string
+                  example: Dr. Gómez
+                fechaIngreso:
+                  type: string
+                  example: 2024-06-01
+      400:
+        description: Solicitud incorrecta, falta de campos requeridos o formato de fecha no válido.
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Todos los campos son obligatorios.
+    """
     data = request.get_json()
     nombre = data.get('nombre')
     doctor = data.get('doctor')
@@ -202,6 +286,61 @@ def register_especialidad():
 
 @app.route('/register-horario', methods=['POST'])
 def register_horario():
+    """
+    Register a new schedule
+    ---
+    tags:
+      - Horarios
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            especialidad:
+              type: string
+              example: Cardiología
+              description: Nombre de la especialidad.
+            doctor:
+              type: string
+              example: Dr. Gómez
+              description: Nombre del doctor.
+            horario:
+              type: array
+              items:
+                type: object
+                properties:
+                  fecha:
+                    type: string
+                    example: 2024-06-10
+                    description: Fecha en formato YYYY-MM-DD.
+                  inicio:
+                    type: string
+                    example: "09:00"
+                    description: Hora de inicio en formato HH:mm.
+                  fin:
+                    type: string
+                    example: "14:00"
+                    description: Hora de fin en formato HH:mm.
+    responses:
+      201:
+        description: Horario registrado con éxito.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Horario registrado con éxito.
+      400:
+        description: Solicitud incorrecta, especialidad o doctor no encontrado.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Especialidad o Doctor no encontrado.
+    """
     data = request.get_json()
     especialidad = data.get('especialidad')
     doctor = data.get('doctor')
@@ -236,6 +375,37 @@ def register_horario():
 
 @app.route('/get-especialidades', methods=['GET'])
 def get_especialidades():
+    """
+    Get all specialties
+    ---
+    tags:
+      - Especialidades
+    responses:
+      200:
+        description: Lista de especialidades.
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1
+              nombre:
+                type: string
+                example: Cardiología
+              doctor:
+                type: string
+                example: Dr. Gómez
+      404:
+        description: No hay especialidades registradas.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: No hay especialidades registradas.
+    """
     especialidades = Especialidad.query.all()
     if not especialidades:
         return jsonify({"message": "No hay especialidades registradas"}), 404
@@ -246,6 +416,34 @@ def get_especialidades():
 
 @app.route('/get-doctores/<string:nombre_especialidad>', methods=['GET'])
 def get_doctores(nombre_especialidad):
+    """
+    Get doctors by specialty
+    ---
+    tags:
+      - Especialidades
+    parameters:
+      - name: nombre_especialidad
+        in: path
+        required: true
+        type: string
+        description: Nombre de la especialidad para buscar doctores.
+    responses:
+      200:
+        description: Lista de doctores para la especialidad.
+        schema:
+          type: array
+          items:
+            type: string
+            example: Dr. Gómez
+      404:
+        description: No se encontraron doctores para esta especialidad.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: No se encontraron doctores para esta especialidad.
+    """
     especialidades = Especialidad.query.filter_by(nombre=nombre_especialidad).all()
     if not especialidades:
         return jsonify({"message": "No se encontraron doctores para esta especialidad"}), 404
@@ -256,6 +454,47 @@ def get_doctores(nombre_especialidad):
 
 @app.route("/horarios-disponibles", methods=['GET'])
 def horarios_disponibles():
+    """
+    Get available schedules for a doctor on a specific date
+    ---
+    tags:
+      - Horarios
+    parameters:
+      - name: doctorId
+        in: query
+        required: true
+        type: string
+        description: Nombre del doctor.
+      - name: fecha
+        in: query
+        required: true
+        type: string
+        description: Fecha en formato YYYY-MM-DD.
+    responses:
+      200:
+        description: Lista de horarios disponibles.
+        schema:
+          type: array
+          items:
+            type: string
+            example: "09:00"
+      400:
+        description: Doctor o fecha son requeridos.
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Doctor y fecha son requeridos.
+      404:
+        description: No hay horario disponible para esta fecha.
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: No hay horario disponible para esta fecha.
+    """
     doctor_nombre = request.args.get('doctorId')
     fecha_str = request.args.get('fecha')
 
@@ -295,6 +534,60 @@ def horarios_disponibles():
 
 @app.route('/register-cita', methods=['POST'])
 def register_cita():
+    """
+    Register a new appointment
+    ---
+    tags:
+      - Citas
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            pacienteId:
+              type: integer
+              example: 1
+              description: ID del paciente.
+            doctorId:
+              type: string
+              example: Dr. Gómez
+              description: Nombre del doctor.
+            especialidad:
+              type: string
+              example: Cardiología
+              description: Especialidad de la cita.
+            fecha:
+              type: string
+              example: 2024-06-10
+              description: Fecha de la cita en formato YYYY-MM-DD.
+            hora:
+              type: string
+              example: "09:00"
+              description: Hora de la cita en formato HH:mm.
+            motivo:
+              type: string
+              example: Chequeo general
+              description: Motivo de la cita.
+    responses:
+      201:
+        description: Cita registrada exitosamente.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Cita registrada exitosamente.
+      400:
+        description: Faltan campos requeridos o doctor no encontrado.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Faltan campos requeridos.
+    """
     data = request.get_json()
     pacienteId = data.get('pacienteId')
     doctor_nombre = data.get('doctorId')
@@ -332,11 +625,60 @@ def register_cita():
     db.session.add(new_cita)
     db.session.commit()
 
-    return jsonify({"message": "Cita registrada exitosamente."}), 201
+    return jsonify({"message": "Cita registrada exitosamente."}), 
 
 
 @app.route('/citas/<int:usuarioId>', methods=['GET'])
 def get_citas_usuario(usuarioId):
+    """
+    Get appointments for a specific user
+    ---
+    tags:
+      - Citas
+    parameters:
+      - name: usuarioId
+        in: path
+        required: true
+        type: integer
+        description: ID del paciente para obtener sus citas.
+    responses:
+      200:
+        description: Lista de citas del paciente.
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1
+              pacienteId:
+                type: integer
+                example: 1
+              doctorId:
+                type: string
+                example: Dr. Gómez
+              especialidad:
+                type: string
+                example: Cardiología
+              fecha:
+                type: string
+                example: 2024-06-10
+              hora:
+                type: string
+                example: "09:00"
+              motivo:
+                type: string
+                example: Chequeo general
+      404:
+        description: No se encontraron citas para el usuario.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: No se encontraron citas para el usuario.
+    """
     citas = Cita.query.filter_by(pacienteId=usuarioId).all()
     resultado = []
     for cita in citas:
@@ -354,6 +696,35 @@ def get_citas_usuario(usuarioId):
 
 @app.route('/citas/<int:citaId>', methods=['DELETE'])
 def eliminar_cita(citaId):
+    """
+    Delete an appointment by ID
+    ---
+    tags:
+      - Citas
+    parameters:
+      - name: citaId
+        in: path
+        required: true
+        type: integer
+        description: ID de la cita a eliminar.
+    responses:
+      200:
+        description: Cita cancelada correctamente.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Cita cancelada correctamente.
+      404:
+        description: Cita no encontrada.
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Cita no encontrada.
+    """
     cita = Cita.query.get(citaId)
     if not cita:
         return jsonify({"message": "Cita no encontrada"}), 404
@@ -362,6 +733,7 @@ def eliminar_cita(citaId):
     db.session.commit()
 
     return jsonify({"message": "Cita cancelada correctamente"}), 200
+
 
 
 if _name_ == '_main_':
