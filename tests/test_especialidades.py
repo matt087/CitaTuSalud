@@ -1,6 +1,17 @@
 import pytest
 import json
+import sys
+import os
+
+backend_path = os.path.join(os.path.dirname(os.getcwd()), 'backend')
+if not os.path.exists(backend_path):
+    backend_path = os.path.join('.', 'backend')
+
+sys.path.insert(0, backend_path)
+sys.path.insert(0, '.')
+
 from models import Especialidad
+
 
 class TestEspecialidades:
     """Pruebas para endpoints de especialidades"""

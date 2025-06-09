@@ -4,7 +4,7 @@ from models import db, User, Especialidad, Horario, HorarioDetail, Cita
 from flasgger import Swagger
 from datetime import datetime, timedelta
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -736,7 +736,7 @@ def eliminar_cita(citaId):
 
 
 
-if _name_ == '_main_':
+if __name__ == '_main_':
     with app.app_context():
         db.create_all()
     app.run(debug=True)

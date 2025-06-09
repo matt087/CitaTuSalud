@@ -1,7 +1,17 @@
 import pytest
 import json
+import sys
+import os
+
+backend_path = os.path.join(os.path.dirname(os.getcwd()), 'backend')
+if not os.path.exists(backend_path):
+    backend_path = os.path.join('.', 'backend')
+
+sys.path.insert(0, backend_path)
+sys.path.insert(0, '.')
+
 from models import Horario, HorarioDetail
-from app import generar_horarios
+from api import generar_horarios
 
 class TestHorarios:
     """Pruebas para endpoints de horarios"""
@@ -109,7 +119,6 @@ class TestHorarios:
         # Verificar que devuelve una lista de horarios
         assert isinstance(json_data, list)
         assert len(json_data) > 0
-        # El primer horario debería ser 09:00
         assert "09:00" in json_data
     
     def test_horarios_disponibles_missing_params(self, client):

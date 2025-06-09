@@ -1,5 +1,17 @@
 import pytest
 import json
+
+import json
+import sys
+import os
+
+backend_path = os.path.join(os.path.dirname(os.getcwd()), 'backend')
+if not os.path.exists(backend_path):
+    backend_path = os.path.join('.', 'backend')
+
+sys.path.insert(0, backend_path)
+sys.path.insert(0, '.')
+
 from models import User, Especialidad, Horario, HorarioDetail, Cita
 from datetime import date
 

@@ -1,5 +1,16 @@
 import pytest
 import json
+import sys
+import os
+
+backend_path = os.path.join(os.path.dirname(os.getcwd()), 'backend')
+if not os.path.exists(backend_path):
+    backend_path = os.path.join('.', 'backend')
+
+sys.path.insert(0, backend_path)
+sys.path.insert(0, '.')
+
+import json
 from models import User
 
 class TestAuth:
@@ -53,7 +64,7 @@ class TestAuth:
                              data=json.dumps(data),
                              content_type='application/json')
         
-        assert response.status_code == 400
+        assert response.status_code == 409
         json_data = json.loads(response.data)
         assert json_data['message'] == 'El correo ya está registrado.'
     

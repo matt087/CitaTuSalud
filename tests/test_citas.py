@@ -1,7 +1,19 @@
 import pytest
 import json
-from models import Cita
+import sys
+import os
 from datetime import date
+
+backend_path = os.path.join(os.path.dirname(os.getcwd()), 'backend')
+if not os.path.exists(backend_path):
+    backend_path = os.path.join('.', 'backend')
+
+sys.path.insert(0, backend_path)
+sys.path.insert(0, '.')
+
+import json
+from models import User, Cita
+
 
 class TestCitas:
     """Pruebas para endpoints de citas"""
@@ -99,7 +111,7 @@ class TestCitas:
             hora='09:00',
             motivo='Primera cita'
         )
-        from app import db
+        from api import db
         db.session.add(cita_existente)
         db.session.commit()
         
@@ -132,7 +144,7 @@ class TestCitas:
             hora='09:00',
             motivo='Consulta de rutina'
         )
-        from app import db
+        from api import db
         db.session.add(cita)
         db.session.commit()
         
@@ -164,7 +176,7 @@ class TestCitas:
             hora='09:00',
             motivo='Consulta de rutina'
         )
-        from app import db
+        from api import db
         db.session.add(cita)
         db.session.commit()
         cita_id = cita.id

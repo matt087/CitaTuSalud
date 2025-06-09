@@ -1,15 +1,39 @@
 import pytest
 import tempfile
 import os
-from app import app, db
-from models import User, Especialidad, Horario, HorarioDetail, Cita
+import sys
+import json
 from flask_bcrypt import Bcrypt
 from datetime import datetime, date
+
+backend_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'backend')
+sys.path.insert(0, backend_path)
+
+parent_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, parent_path)
+
+try:
+    from api import app, db
+    from models import User, Especialidad, Horario, HorarioDetail, Cita
+    from flask_bcrypt import Bcrypt
+except ImportError as e:
+    print(f"Error importing modules: {e}")
+    print(f"Backend path: {backend_path}")
+    print(f"Current working directory: {os.getcwd()}")
+    print("Make sure api.py and models.py are in the backend/ directory")
+    print("Current sys.path:")
+    for path in sys.path:
+        print(f"  - {path}")
+
+    api_file = os.path.join(backend_path, 'api.py')
+    models_file = os.path.join(backend_path, 'models.py')
+    print(f"¿Existe api.py? {os.path.exists(api_file)} ({api_file})")
+    print(f"¿Existe models.py? {os.path.exists(models_file)} ({models_file})")
+    raise
 
 @pytest.fixture
 def client():
     """Crea un cliente de prueba para la aplicación Flask"""
-    # Crear base de datos temporal
     database_fd, app.config['DATABASE'] = tempfile.mkstemp()
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + app.config['DATABASE']
     app.config['TESTING'] = True
