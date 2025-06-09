@@ -231,35 +231,7 @@ def run_coverage_analysis():
     except Exception as e:
         print(f"Error ejecutando análisis de cobertura: {e}")
         return False
-
-def generate_summary():
-    """Generar resumen final"""
-    print("\n" + "=" * 60)
-    print("RESUMEN DEL SISTEMA DE PRUEBAS")
-    print("=" * 60)
     
-    summary = """
-    ESTRUCTURA VERIFICADA:
-       CitaTuSalud/
-       ├── backend/
-       │   ├── api.py       # Aplicación Flask
-       │   └── models.py    # Modelos de BD
-       └── tests/
-           ├── conftest.py  # Configuración de fixtures
-           └── test_auth.py # Pruebas de autenticación
-    
-    HERRAMIENTAS UTILIZADAS:
-       - Pytest: Framework de testing
-       - Coverage.py: Análisis de cobertura
-       - Flask-Testing: Cliente de pruebas
-       - SQLite temporal: Base de datos de pruebas
-    
-    COMANDOS ÚTILES:
-       - python -m pytest tests/ -v
-       - python -m pytest tests/ --cov=backend.api --cov=backend.models
-       - python run_tests_final.py
-    """
-    print(summary)
 
 def main():
     """Función principal"""
@@ -294,9 +266,6 @@ def main():
     
     # Ejecutar análisis de cobertura
     coverage_success = run_coverage_analysis()
-    
-    # Generar resumen
-    generate_summary()
     
     # Resultado final
     print("\n" + "=" * 60)
