@@ -1,0 +1,48 @@
+.home-page {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+.logo{
+  text-align: center;
+  vertical-align: top;
+  position: relative;
+  right: 10%;
+}
+.columna{
+  display: flex;
+}
+.lista{
+  width: 79%;
+  text-align: left;
+}
+.titulo {
+  color: #c9215c;
+}
+  
+  h2 {
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  ul {
+    text-align: left;
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  

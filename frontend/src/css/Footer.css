@@ -1,0 +1,34 @@
+.footer {
+    background-color: #c9215c;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-text {
+    color: white;
+    margin: 10px 0;
+  }
+  
+  .whatsapp-button {
+    background-color: #b4548b;
+    border-color: #b4548b;
+    color: white;
+    font-size: 15px;
+    padding: 10px 10px;
+    cursor: pointer;
+  }
+  
+  .whatsapp-button:hover {
+    background-color: #128c7e;
+  }
+  
+  .whatsapp-link {
+    text-decoration: none;
+  }
+  

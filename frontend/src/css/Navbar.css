@@ -1,0 +1,32 @@
+.navbar {
+    background-color: #c9215c;
+    padding: 10px;
+  }
+  
+  .navbar-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-list li {
+    margin-right: 20px;
+  }
+  
+  .navbar-list li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navbar-list li a:hover {
+    text-decoration: underline;
+  }
+
+  button{
+    background-color: #c9215c;
+    border-color: #c9215c;
+    color: white;
+    font-size: 17px;
+  }
+  
