@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <div className="banner">
       <div className="banner-content">
-        <h1>CitaSuSalud</h1>
+        <h1>CitaTuSalud</h1>
         <p>Tu salud, tu tiempo. Gestiona tus citas médicas fácilmente.</p>
       </div>
     </div>
