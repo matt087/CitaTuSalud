@@ -44,7 +44,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated, rol }) => {
               </>
             )}
             <li>
-              <button onClick={handleLogout}>Cerrar sesión</button>
+              <button className="logout-btn" onClick={handleLogout}>Cerrar sesión</button>
             </li>
           </>
         )}

@@ -1,32 +1,43 @@
 .navbar {
     background-color: #c9215c;
-    padding: 10px;
-  }
-  
-  .navbar-list {
+    padding: 16px 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-list {
     display: flex;
+    align-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-  
-  .navbar-list li {
-    margin-right: 20px;
-  }
-  
-  .navbar-list li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .navbar-list li a:hover {
-    text-decoration: underline;
-  }
+    gap: 20px;
+}
 
-  button{
-    background-color: #c9215c;
-    border-color: #c9215c;
+.navbar-list li a,
+.navbar-list li button {
+    background-color: white;
+    color: #9b0044;
+    border: 2px solid white;
+    font-size: 19px;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    box-sizing: border-box; /* Esto es clave */
+    display: inline-block;
+    user-select: none;
+    transform: scale(1); /* fuerza tamaño base */
+}
+
+.navbar-list li a:hover,
+.navbar-list li button:hover {
+    background-color: #9b0044;
     color: white;
-    font-size: 17px;
-  }
-  
+    border-color: white;
+    transform: scale(1); /* evita que cambie tamaño */
+}
