@@ -2,33 +2,42 @@
     background-color: #c9215c;
     padding: 10px;
     text-align: center;
-  }
-  
-  .footer-content {
+}
+
+.footer-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .footer-text {
+}
+
+.footer-text {
     color: white;
     margin: 10px 0;
-  }
-  
-  .whatsapp-button {
-    background-color: #b4548b;
-    border-color: #b4548b;
-    color: white;
+}
+
+/* Botón WhatsApp: estilo consistente con navbar */
+.whatsapp-button {
+    background-color: white;          /* fondo blanco */
+    color: #9b0044;                   /* texto rosa oscuro */
+    border: 2px solid white;          /* borde blanco fijo */
     font-size: 15px;
-    padding: 10px 10px;
+    padding: 10px 20px;
     cursor: pointer;
-  }
-  
-  .whatsapp-button:hover {
-    background-color: #128c7e;
-  }
-  
-  .whatsapp-link {
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    box-sizing: border-box;
+    user-select: none;
+    display: inline-block;
+    transform: scale(1);
+}
+
+.whatsapp-button:hover {
+    background-color: #9b0044;        /* fondo rosa oscuro */
+    color: white;                     /* texto blanco */
+    border-color: white;              /* borde blanco */
+    transform: scale(1);
+}
+
+.whatsapp-link {
     text-decoration: none;
-  }
-  
+}

@@ -2,7 +2,7 @@
     background-color: #c9215c;
     padding: 16px 24px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 1000;
 }
@@ -28,10 +28,10 @@
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    box-sizing: border-box; /* Esto es clave */
+    box-sizing: border-box;
     display: inline-block;
     user-select: none;
-    transform: scale(1); /* fuerza tamaño base */
+    transform: scale(1);
 }
 
 .navbar-list li a:hover,
@@ -39,5 +39,5 @@
     background-color: #9b0044;
     color: white;
     border-color: white;
-    transform: scale(1); /* evita que cambie tamaño */
+    transform: scale(1); 
 }
