@@ -8,7 +8,7 @@ from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/CitaTuSalud"
+app.config["MONGO_URI"] = "mongodb+srv://developer:1234@cluster0.xbwzy0s.mongodb.net/citatusaluddb?retryWrites=true&w=majority&appName=Cluster0"
 app.config['JSON_AS_ASCII'] = False 
 
 CORS(app, supports_credentials=True)
@@ -82,6 +82,13 @@ def register():
 
     return jsonify({"message": "Usuario registrado con éxito."}), 201
 
+@app.route('/test')
+def test():
+    try:
+        user_count = mongo.db.users.count_documents({})
+        return jsonify({"status": "ok", "users_count": user_count})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
 
 @app.route('/login', methods=['POST'])
 def login():

@@ -14,14 +14,23 @@ const Cita = () => {
   const [reason, setReason] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-      const getEspecialidades = async () => {
-        const data = await fetchEspecialidades();
+ useEffect(() => {
+  const getEspecialidades = async () => {
+    try {
+      const data = await fetchEspecialidades();
+      if (Array.isArray(data)) {
         setEspecialidades(data);
-      };
-      getEspecialidades();
-    }, []);
-  
+      } else {
+        console.error("Especialidades no es un array:", data);
+        setEspecialidades([]);
+      }
+    } catch (error) {
+      console.error("Error al obtener especialidades:", error);
+      setEspecialidades([]);
+    }
+  };
+  getEspecialidades();
+}, []);
     useEffect(() => {
       const getDoctores = async () => {
         if (selectedEspecialidad) {
