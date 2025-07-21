@@ -6,9 +6,13 @@ from datetime import datetime, timedelta
 from flask_cors import CORS
 from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb+srv://developer:1234@cluster0.xbwzy0s.mongodb.net/citatusaluddb?retryWrites=true&w=majority&appName=Cluster0"
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.config['JSON_AS_ASCII'] = False 
 
 CORS(app, supports_credentials=True)
