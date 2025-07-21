@@ -27,3 +27,8 @@ c) Garantizar calidad mediante pruebas automatizadas (tests) y scripts de despli
 *Capa de presentación*:   frontend, páginas y componentes visuales. <br>  
 *Capa de negocio*:        lógica en backend (reservas, cancelaciones, validaciones). <br>  
 *Capa de datos*:          modelo ORM, persistencia en base de datos.
+
+# Tareas de Seguimiento:
+* **Juan Donoso**: Encargado del diseño de endpoints y documentación.
+* **Brenda Simbaña**: Encargada del diseño e implementación de base de datos.
+* **Mateo Montenegro**: Encargado de frontend y pruebas unitarias.
