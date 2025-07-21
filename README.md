@@ -7,8 +7,8 @@ b) Ofrecer una plataforma escalable y mantenible basada en arquitectura cliente�
 c) Garantizar calidad mediante pruebas automatizadas (tests) y scripts de despliegue/distribución (scripts).
 
 - Tecnologías
-Componente	         |   Tecnologías Detalladas
-Backend	             |   Python, frameworks web relacionados (ej. Flask, Django)
+Componente	         |   Tecnologías Detalladas \n
+Backend	             |   Python, frameworks web relacionados (ej. Flask, Django) \n
 Frontend	           |   JavaScript, HTML, CSS
 Testing	             |   pytest u otra herramienta de testing en Python
 Scripts	             |   Bash o Python para despliegue / migración de datos
