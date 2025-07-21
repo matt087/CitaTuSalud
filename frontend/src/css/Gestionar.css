@@ -1,100 +1,125 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
-    height: 100vh;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #2575fc);
-    font-family: 'Arial', sans-serif;
-  }
-    .form-container-box {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #4a90e2;
-    padding: 5%;
-  }
-  h2{
-    padding: 2%;
-  }
-  
-  .appointment-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  .radio-group {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    
-  }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  height: 100vh;
+}
 
-  .radio-group label{
-    font-weight: 100;
-    
-  }
-  
-  input[type="radio"] {
-    font-weight: 50;
-    margin-right: 10px;
-  }
-  
-  select, input[type="date"], input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-top: 5px;
-  }
-  
-  .input-field {
-    background-color: #f9f9f9;
-  }
-  
-  .submit-button {
-    background-color: #8b436e;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-  }
-  
-  .submit-button:hover {
-    background-color: #2575fc;
-  }
-  
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+  font-family: 'Arial', sans-serif;
+}
+
+.form-container-box {
+  background: #fff;
+  padding: 2.5rem 3rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4a90e2;
+  padding: 5%;
+  font-weight: 700;
+}
+
+h2 {
+  padding: 2%;
+  color: #4a4a4a;
+  font-weight: 600;
+}
+
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+  color: #333;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.radio-group label {
+  font-weight: 400;
+  color: #555;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+select,
+input[type="date"],
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  margin-top: 6px;
+  font-size: 1rem;
+  background-color: #fafafa;
+  transition: border-color 0.25s ease;
+  outline-offset: 2px;
+}
+
+select:focus,
+input[type="date"]:focus,
+input[type="text"]:focus {
+  border-color: #8b436e;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(139, 67, 110, 0.4);
+}
+
+.input-field {
+  background-color: #fafafa;
+}
+
+.submit-button {
+  background-color: #8b436e;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 25px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(139, 67, 110, 0.6);
+}
+
+.submit-button:hover {
+  background-color: #2575fc;
+  box-shadow: 0 6px 20px rgba(37, 117, 252, 0.7);
+}

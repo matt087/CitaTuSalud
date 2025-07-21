@@ -1,63 +1,93 @@
-
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  .mis-citas-container {
-    min-height: 80vh; 
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  h2 {
-    text-align: center;
-    color: #333;
-    font-size: 2rem;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .boton {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  
-  button:hover {
-    background-color: #d32f2f;
-  }
-  
-  p {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #666;
-  }
-  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fafafa;
+  color: #333;
+}
+
+.mis-citas-container {
+  min-height: 80vh; 
+  padding: 30px 40px;
+  background-color: #fff;
+  max-width: 900px;
+  margin: 40px auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(201, 33, 92, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.mis-citas-container:hover {
+  box-shadow: 0 12px 30px rgba(201, 33, 92, 0.25);
+}
+
+h2 {
+  text-align: center;
+  color: #c9215c;
+  font-size: 2.4rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  font-size: 1rem;
+}
+
+th, td {
+  padding: 14px 20px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+th {
+  background-color: #c9215c;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 8px 8px 0 0;
+}
+
+tr {
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+}
+
+tr:hover {
+  background-color: #ffe6f0;
+}
+
+.boton {
+  background-color: #c9215c;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 3px 8px rgba(201, 33, 92, 0.4);
+}
+
+.boton:hover {
+  background-color: #9b0044;
+  transform: scale(1.05);
+  box-shadow: 0 5px 12px rgba(155, 0, 68, 0.5);
+}
+
+p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 20px;
+}

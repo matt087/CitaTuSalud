@@ -15,11 +15,10 @@
     margin: 10px 0;
 }
 
-/* Botón WhatsApp: estilo consistente con navbar */
 .whatsapp-button {
-    background-color: white;          /* fondo blanco */
-    color: #9b0044;                   /* texto rosa oscuro */
-    border: 2px solid white;          /* borde blanco fijo */
+    background-color: white;          
+    color: #9b0044;                   
+    border: 2px solid white;         
     font-size: 15px;
     padding: 10px 20px;
     cursor: pointer;
@@ -32,9 +31,9 @@
 }
 
 .whatsapp-button:hover {
-    background-color: #9b0044;        /* fondo rosa oscuro */
-    color: white;                     /* texto blanco */
-    border-color: white;              /* borde blanco */
+    background-color: #9b0044;        
+    color: white;                     
+    border-color: white;              
     transform: scale(1);
 }
 
