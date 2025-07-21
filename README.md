@@ -1,14 +1,14 @@
 CitaTuSalud es una aplicación web diseñada para la gestión de citas médicas, que integra un backend y un frontend robustos, junto con pruebas automatizadas y scripts de utilidad. Este proyecto, desarrollado por Mateo Montenegro, Brenda Simbaña y Juan Donoso, 
 tiene como objetivo facilitar el proceso de agendamiento y administración de citas en entornos clínicos.
 
-- Objetivos
-a) Implementar un sistema de reserva de citas médicas, optimizando la interacción entre pacientes y profesionales de la salud.
+- Objetivos <br>
+a) Implementar un sistema de reserva de citas médicas, optimizando la interacción entre pacientes y profesionales de la salud. <br>  
 b) Ofrecer una plataforma escalable y mantenible basada en arquitectura cliente‑servidor.
 c) Garantizar calidad mediante pruebas automatizadas (tests) y scripts de despliegue/distribución (scripts).
 
 - Tecnologías
-Componente	         |   Tecnologías Detalladas \n
-Backend	             |   Python, frameworks web relacionados (ej. Flask, Django) \n
+Componente	         |   Tecnologías Detalladas
+Backend	             |   Python, frameworks web relacionados (ej. Flask, Django) 
 Frontend	           |   JavaScript, HTML, CSS
 Testing	             |   pytest u otra herramienta de testing en Python
 Scripts	             |   Bash o Python para despliegue / migración de datos
